@@ -43,6 +43,7 @@ docker-deploy-dev:
      #- docker push "$CI_REGISTRY_IMAGE"
      - docker system prune -f 
      - docker-compose -f docker-compose.dev.yml up -d
+     - cd
      - docker cp newyb/yb_fashion_image_classifier/vgg19_transfer_subcat1.h5 ms_classifier_dev:/app
      - docker cp newyb/yb_fashion_image_classifier/vgg19_transfer_gendermastercat (1).h5 ms_classifier_dev:/app
      - docker cp newyb/yb_fashion_image_classifier/vgg19_transfer_articletype (1).h5 ms_classifier_dev:/app
