@@ -45,8 +45,8 @@ docker-deploy-dev:
      - docker-compose -f docker-compose.dev.yml up -d
      - cd
      - docker cp newyb/vgg19_transfer_subcat1.h5 ms_classifier_dev:/app
-     - docker cp newyb/vgg19_transfer_gendermastercat (1).h5 ms_classifier_dev:/app
-     - docker cp newyb/vgg19_transfer_articletype (1).h5 ms_classifier_dev:/app
+     - docker cp newyb/'vgg19_transfer_gendermastercat (1).h5' ms_classifier_dev:/app
+     - docker cp newyb/'vgg19_transfer_articletype (1).h5' ms_classifier_dev:/app
      - docker cp newyb/model_final.pth ms_classifier_dev:/app
     only:
      - develop
