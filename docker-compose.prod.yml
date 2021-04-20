@@ -1,0 +1,16 @@
+version: '3'
+services:
+    yb_app_prod:
+        build:
+            context: ./
+            dockerfile: production.Dockerfile
+        environment:
+            #MONGO_URL: mongodb://mongo-primary/HASHED_URL?replicaSet=rs0
+            MONGO_URL: 'mongodb://YB_ADMIN:yb_admin_10646@139.59.7.170:27017/admin'
+            MONGO_DATABASE: 'YELLOW_BACKS_DB'
+            FACEBOOK_CLIENT_ID: 307436663970368
+            REDIS_PORT: 6379
+            REDIS_HOST: '139.59.85.89'
+            REDIS_PASSWORD: 'eP4s6DbfK2WijYveFCSKJ7C86eiFncmCgdzGUCHISUVKbrPDifER4LbUGSKVS3mxyzHb9lR1rzgcm1h9'
+            BUILD: 'prod'
+        container_name: ms_classifier_prod

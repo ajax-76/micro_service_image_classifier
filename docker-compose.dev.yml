@@ -1,0 +1,15 @@
+version: '3'
+services:
+    yb_app_dev:
+        build:
+            context: ./
+            dockerfile: develop.Dockerfile
+        environment:
+            #MONGO_URL: mongodb://mongo-primary/HASHED_URL?replicaSet=rs0
+            MONGO_URL: 'mongodb://yb_debug_admin:ybdebug_101@68.183.88.220:27017/admin'
+            MONGO_DATABASE: 'YELLOW_BACKS_DB'
+            REDIS_PORT: 6379
+            REDIS_HOST: '204.48.30.159'
+            REDIS_PASSWORD: 'hB9i2REJQsuf+3uJfPMmdjQeU8tGdkMJUM4riZNRy+pGVwJ372DKIAsS9MRdAb5aoshL0EqJp1TQ621'
+            BUILD: 'dev'
+        container_name: ms_classifier_dev
