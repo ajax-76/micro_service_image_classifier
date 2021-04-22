@@ -57,6 +57,7 @@ docker-deploy-prod:
      #- docker push "$CI_REGISTRY_IMAGE"
      - docker system prune -f
      - docker-compose -f docker-compose.prod.yml up -d
+     - cd
      - docker cp newyb/vgg19_transfer_subcat1.h5 ms_classifier_prod:/app
      - docker cp newyb/vgg19_transfer_gendermastercat.h5 ms_classifier_prod:/app
      - docker cp newyb/vgg19_transfer_articletype.h5 ms_classifier_prod:/app
