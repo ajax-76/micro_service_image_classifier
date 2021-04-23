@@ -11,6 +11,7 @@ import redis
 import json
 import os
 import time
+import sys
 
 print('script is initialized')
 redis_host = os.environ['REDIS_HOST']
@@ -54,6 +55,7 @@ while True:
             val=col.update_one({"_id":pid},{"$set":{"ml_classified_info":imageclassifierdetailslist,"check":True,"ml_detectron_info":image_details}})
             del_data= redis_client.delete(message["data"])
             print(del_data)
+            os.execv(sys.executable, ['python3'] + sys.argv)
                 # do something with the message
     time.sleep(0.001)  # be nice to the system :)
 
