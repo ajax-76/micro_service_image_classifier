@@ -53,7 +53,7 @@ while True:
             print("ml image processed")
             pid=message["data"].decode("utf-8")
             val=col.update_one({"_id":pid},{"$set":{"ml_classified_info":imageclassifierdetailslist,"check":True,"ml_detectron_info":image_details}})
-            del clsf
+            #del clsf
             del_data= redis_client.delete(message["data"])
             print(del_data)
             #os.execv(sys.executable, ['python3'] + sys.argv)
