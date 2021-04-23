@@ -8,25 +8,26 @@ from keras.models import Model, Sequential
 from keras.preprocessing import image
 from keras.preprocessing.image import ImageDataGenerator, img_to_array, array_to_img
 from keras.models import Sequential
-articletype_ = ['Backpacks', 'Belts', 'Briefs', 'Casual Shoes', 'Flats', 'Flip Flops',
-                'Formal Shoes', 'Handbags', 'Heels', 'Jeans', 'Kurtas',
-                'Perfume and Body Mist', 'Sandals', 'Shirts', 'Shorts', 'Sports Shoes',
-                'Sunglasses', 'Tops', 'Trousers', 'Tshirts', 'Wallets', 'Watches']
-gender_mastercategory_ = ['BoysApparel', 'GirlsApparel', 'MenAccessories', 'MenApparel',
-                          'MenFootwear', 'MenPersonal Care', 'UnisexAccessories',
-                          'UnisexFootwear', 'WomenAccessories', 'WomenApparel', 'WomenFootwear',
-                          'WomenPersonal Care']
-subcategory_ = ['Bags', 'Belts', 'Bottomwear', 'Eyewear', 'Flip Flops', 'Fragrance',
-                'Innerwear', 'Jewellery', 'Sandal', 'Shoes', 'Topwear', 'Wallets',
-                'Watches']
-#base_folder = 'weights/classification/{model}'
-model_article_type = keras.models.load_model('vgg19_transfer_articletype.h5')
-model_gender_mastercategory = keras.models.load_model('vgg19_transfer_gendermastercat.h5')
-model_subcategory = keras.models.load_model('vgg19_transfer_subcat1.h5')
+
 
 
 # print(gender_mastercategory_df.groupby(['gender_masterCategory']).count().iloc[:,0].index[model_gender_mastercategory.predict(image_batch[0]).argmax()])
 def yellowbacks(image):
+    articletype_ = ['Backpacks', 'Belts', 'Briefs', 'Casual Shoes', 'Flats', 'Flip Flops',
+                'Formal Shoes', 'Handbags', 'Heels', 'Jeans', 'Kurtas',
+                'Perfume and Body Mist', 'Sandals', 'Shirts', 'Shorts', 'Sports Shoes',
+                'Sunglasses', 'Tops', 'Trousers', 'Tshirts', 'Wallets', 'Watches']
+    gender_mastercategory_ = ['BoysApparel', 'GirlsApparel', 'MenAccessories', 'MenApparel',
+                            'MenFootwear', 'MenPersonal Care', 'UnisexAccessories',
+                            'UnisexFootwear', 'WomenAccessories', 'WomenApparel', 'WomenFootwear',
+                            'WomenPersonal Care']
+    subcategory_ = ['Bags', 'Belts', 'Bottomwear', 'Eyewear', 'Flip Flops', 'Fragrance',
+                    'Innerwear', 'Jewellery', 'Sandal', 'Shoes', 'Topwear', 'Wallets',
+                    'Watches']
+    #base_folder = 'weights/classification/{model}'
+    model_article_type = keras.models.load_model('vgg19_transfer_articletype.h5')
+    model_gender_mastercategory = keras.models.load_model('vgg19_transfer_gendermastercat.h5')
+    model_subcategory = keras.models.load_model('vgg19_transfer_subcat1.h5')
    # Convert single image to a batch.
     article_type = model_article_type.predict(image)
     gender_mastercategory = model_gender_mastercategory.predict(image)
