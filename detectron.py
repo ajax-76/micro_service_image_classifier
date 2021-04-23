@@ -30,7 +30,7 @@ cfg.DATASETS.TEST = ("deepfashion_val", )
 cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = 0.55   # set the testing threshold for this model
 predictor = DefaultPredictor(cfg)
 def crop_images(url):
-  detectron_database = pd.DataFrame(columns=('img_array','class'))
+  #detectron_database = pd.DataFrame(columns=('img_array','class'))
 
   image = Image.open(requests.get(url, stream=True).raw)
   image  = image.resize((512,512))
@@ -54,8 +54,8 @@ def crop_images(url):
   for i in range(0,len(boxes)):
       image_details.append(lst_name[outputs['instances'][i].pred_classes.item()])
 
-  for i in range(len(img_batch)):
-    detectron_database.loc[len(detectron_database)] = [img_batch[i],image_details[i]]
+  # for i in range(len(img_batch)):
+  #   detectron_database.loc[len(detectron_database)] = [img_batch[i],image_details[i]]
   # convert detectron_database in json :  save in db ---  
   return img_batch,image_details
 

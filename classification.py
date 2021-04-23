@@ -37,12 +37,12 @@ def yellowbacks(image):
 
 def result(image_batch):
     result_list = []
-    database1 = pd.DataFrame(
-        columns=('img_array', 'article_type', 'genmcat', 'subcat'))
+    #database1 = pd.DataFrame(
+    #    columns=('img_array', 'article_type', 'genmcat', 'subcat'))
     for i in image_batch:
         i.shape = (1, i.shape[0], i.shape[1], i.shape[2])
         a, b, c = yellowbacks(i)
-        database1.loc[len(database1)] = [i, a, b, c]
+        #database1.loc[len(database1)] = [i, a, b, c]
         result_list.append([a, b, c])
 
     return result_list
