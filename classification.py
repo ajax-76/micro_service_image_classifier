@@ -24,32 +24,25 @@ subcategory_ = ['Bags', 'Belts', 'Bottomwear', 'Eyewear', 'Flip Flops', 'Fragran
 
 
 # print(gender_mastercategory_df.groupby(['gender_masterCategory']).count().iloc[:,0].index[model_gender_mastercategory.predict(image_batch[0]).argmax()])
-# def yellowbacks(image):
-#    # Convert single image to a batch.
-#     article_type = model_article_type.predict(image)
-#     gender_mastercategory = model_gender_mastercategory.predict(image)
-#     subcategory = model_subcategory.predict(image)
-
-#     return articletype_[article_type.argmax()], gender_mastercategory_[gender_mastercategory.argmax()], subcategory_[subcategory.argmax()]
-
-
-def result(image_batch):
+def yellowbacks(image):
+   # Convert single image to a batch.
     model_article_type = keras.models.load_model('vgg19_transfer_articletype.h5')
     model_gender_mastercategory = keras.models.load_model('vgg19_transfer_gendermastercat.h5')
     model_subcategory = keras.models.load_model('vgg19_transfer_subcat1.h5')
+    article_type = model_article_type.predict(image)
+    gender_mastercategory = model_gender_mastercategory.predict(image)
+    subcategory = model_subcategory.predict(image)
 
+    return articletype_[article_type.argmax()], gender_mastercategory_[gender_mastercategory.argmax()], subcategory_[subcategory.argmax()]
+
+
+def result(image_batch):
     result_list = []
     #database1 = pd.DataFrame(
     #    columns=('img_array', 'article_type', 'genmcat', 'subcat'))
     for i in image_batch:
         i.shape = (1, i.shape[0], i.shape[1], i.shape[2])
-        article_type = model_article_type.predict(i)
-        gender_mastercategory = model_gender_mastercategory.predict(i)
-        subcategory = model_subcategory.predict(i)
-        a, b, c = articletype_[article_type.argmax()], gender_mastercategory_[gender_mastercategory.argmax()], subcategory_[subcategory.argmax()]
-        del article_type
-        del gender_mastercategory
-        del subcategory
+        a, b, c = yellowbacks(i)
         #database1.loc[len(database1)] = [i, a, b, c]
         result_list.append([a, b, c])
 
