@@ -17,20 +17,19 @@ from detectron2.data import MetadataCatalog
 import uuid 
 from PIL import Image
 import requests
-
-def crop_images(url):
-  lst_name = ['short_sleeved_shirt', 'long_sleeved_shirt', 'short_sleeved_outwear', 'long_sleeved_outwear',
+lst_name = ['short_sleeved_shirt', 'long_sleeved_shirt', 'short_sleeved_outwear', 'long_sleeved_outwear',
             'vest', 'sling', 'shorts', 'bottom_wear', 'skirt', 'short_sleeved_dress',
             'long_sleeved_dress', 'vest_dress', 'sling_dress']
-  file_path= 'config.yaml'
-  model_path='model_final.pth'
-  #json_file_path='xyz_path'
-  cfg = get_cfg()
-  cfg.merge_from_file(file_path)
-  cfg.MODEL.WEIGHTS =  model_path
-  cfg.DATASETS.TEST = ("deepfashion_val", )
-  cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = 0.55   # set the testing threshold for this model
-  predictor = DefaultPredictor(cfg)
+file_path= 'config.yaml'
+model_path='model_final.pth'
+#json_file_path='xyz_path'
+cfg = get_cfg()
+cfg.merge_from_file(file_path)
+cfg.MODEL.WEIGHTS =  model_path
+cfg.DATASETS.TEST = ("deepfashion_val", )
+cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = 0.55   # set the testing threshold for this model
+predictor = DefaultPredictor(cfg)
+def crop_images(url):
   #detectron_database = pd.DataFrame(columns=('img_array','class'))
 
   image = Image.open(requests.get(url, stream=True).raw)
