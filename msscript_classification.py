@@ -24,7 +24,7 @@ mongo_url = os.environ['MONGO_URL']
 redis_client = redis.Redis(host=redis_host, port=redis_port, db=0,password = redis_password)
 mongo_client = MongoClient(mongo_url)
 db = mongo_client["YELLOW_BACKS_DB"]
-col = db["PRODUCT"]
+# col = db["PRODUCT"] Removed this line -- new collction names are men_products or women_products
 
 # redis_client = redis.Redis(host='204.48.30.159', port=6379, db=0,password = 'hB9i2REJQsuf+3uJfPMmdjQeU8tGdkMJUM4riZNRy+pGVwJ372DKIAsS9MRdAb5aoshL0EqJp1TQ621')
 # mongo_client = MongoClient('mongodb://yb_debug_admin:ybdebug_101@68.183.88.220:27017/admin')
@@ -42,6 +42,8 @@ while True:
     message = p.get_message()
     if message and not message['data'] == 1:
         cache_value = redis_client.hgetall(message["data"])
+        console.log(cache_value)
+        col = db[cache_value[b'type']+"_products"]
         if str(cache_value[b'step'].decode("utf-8"))=="2":
             try:
                 import detectron as det
