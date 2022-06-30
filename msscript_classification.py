@@ -25,16 +25,6 @@ redis_client = redis.Redis(host=redis_host, port=redis_port, db=0,password = red
 mongo_client = MongoClient(mongo_url)
 db = mongo_client["YELLOW_BACKS_DB"]
 col = db["PRODUCT"]
-
-# redis_client =""
-# mongo_client = ""
-# db = mongo_client["YELLOW_BACKS_DB"]
-# col = db["PRODUCT"]
-#cache_value = redis_client.hgetall("cd47a360-9fa0-11eb-8b23-777c4db526b9")
-#print(cache_value)
-
-#val=col.find_one({"_id":"82960770-9fa6-11eb-bfbc-bddb9fd26dcd"})
-#print(val)
 p = redis_client.pubsub()
 p.subscribe('product_upload_classifier')
 
