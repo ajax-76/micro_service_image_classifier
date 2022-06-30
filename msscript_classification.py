@@ -26,8 +26,8 @@ mongo_client = MongoClient(mongo_url)
 db = mongo_client["YELLOW_BACKS_DB"]
 col = db["PRODUCT"]
 
-# redis_client = redis.Redis(host='204.48.30.159', port=6379, db=0,password = 'hB9i2REJQsuf+3uJfPMmdjQeU8tGdkMJUM4riZNRy+pGVwJ372DKIAsS9MRdAb5aoshL0EqJp1TQ621')
-# mongo_client = MongoClient('mongodb://yb_debug_admin:ybdebug_101@68.183.88.220:27017/admin')
+# redis_client =""
+# mongo_client = ""
 # db = mongo_client["YELLOW_BACKS_DB"]
 # col = db["PRODUCT"]
 #cache_value = redis_client.hgetall("cd47a360-9fa0-11eb-8b23-777c4db526b9")
