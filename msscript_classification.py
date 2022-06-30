@@ -24,17 +24,6 @@ mongo_url = os.environ['MONGO_URL']
 redis_client = redis.Redis(host=redis_host, port=redis_port, db=0,password = redis_password)
 mongo_client = MongoClient(mongo_url)
 db = mongo_client["YELLOW_BACKS_DB"]
-# col = db["PRODUCT"] Removed this line -- new collction names are men_products or women_products
-
-# redis_client = redis.Redis(host='204.48.30.159', port=6379, db=0,password = 'hB9i2REJQsuf+3uJfPMmdjQeU8tGdkMJUM4riZNRy+pGVwJ372DKIAsS9MRdAb5aoshL0EqJp1TQ621')
-# mongo_client = MongoClient('mongodb://yb_debug_admin:ybdebug_101@68.183.88.220:27017/admin')
-# db = mongo_client["YELLOW_BACKS_DB"]
-# col = db["PRODUCT"]
-#cache_value = redis_client.hgetall("cd47a360-9fa0-11eb-8b23-777c4db526b9")
-#print(cache_value)
-
-#val=col.find_one({"_id":"82960770-9fa6-11eb-bfbc-bddb9fd26dcd"})
-#print(val)
 p = redis_client.pubsub()
 p.subscribe('product_upload_classifier')
 
